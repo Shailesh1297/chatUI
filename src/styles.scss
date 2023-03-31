@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+html,body {
+    height: 100%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.disable-pointer-events {
+    pointer-events: none;
+    &.blur{
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+        background-color: #ccc;
+    }
+}
+
+//heights
+.h-90 {
+    height: 90%;
+}
+
+.h-10 {
+    height: 10%;
+}
+
+.h-5 {
+    height: 5%;
+}

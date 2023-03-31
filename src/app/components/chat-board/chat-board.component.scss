@@ -1,0 +1,15 @@
+
+:host{
+    .c-display {
+        background-color: #7fffd4;
+    }
+
+    .c-message {
+        &.c-message-sender {
+            background-color: #FF7FAA;
+        }
+        &.c-message-responder {
+            background-color: yellow;
+        }
+    }
+}
