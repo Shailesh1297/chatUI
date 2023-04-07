@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Message } from '../models/message';
 import { environment } from '../../environments/environment';
@@ -28,7 +29,7 @@ export class WebSocketService {
    * @function to connect to web socket
    */
   public connect(alias?: string): void {
-    this.userId = window.crypto.randomUUID();
+    this.userId = uuidv4();
     const data = {
       userId: this.userId,
       alias: alias ||''
