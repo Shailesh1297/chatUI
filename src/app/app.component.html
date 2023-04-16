@@ -13,10 +13,11 @@
             <div class="form-group">
                 <button (click)="connect()" [disabled]="webSocket.getSessionId" class="btn btn-success m-1">{{ webSocket.getSessionId ? 'Connected': 'Connect' }}</button>
                 <button (click)="disconnect()" [disabled]="!webSocket.getSessionId" class="btn btn-danger m-1">Disconnect</button>
+                <button (click)="toggleMedia()" class="btn btn-primary">Toggle Media</button>
             </div>
         </div>
     </div>
-    <div class="d-flex h-90" [ngClass]="{'disable-pointer-events': !webSocket.getSessionId,'blur': !webSocket.getSessionId  }">
+    <div class="d-flex h-90" [ngClass]="{'disable-pointer-events': !webSocket.getSessionId && false,'blur': !webSocket.getSessionId && false   }">
         <div class="col-4 p-3">
             <div class="d-flex fw-bolder h-5 justify-content-center align-items-center my-1">
                 <span>Active Users</span>
@@ -30,7 +31,8 @@
             </div>
         </div>
         <div class="col-8">
-            <app-chat-board [recipientId]="recipientId" (sendMessage)="sendMessage($event)"></app-chat-board>
+            <app-chat-board *ngIf="textMedia" [recipientId]="recipientId" (sendMessage)="sendMessage($event)"></app-chat-board>
+            <app-multimedia-chat-board *ngIf="!textMedia" [recipient]="recipient"></app-multimedia-chat-board>
         </div>
     </div>
 

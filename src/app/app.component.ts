@@ -14,7 +14,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   userList: SessionInfo[] = [];
   recipientId: string = 'all';
+  recipient!: SessionInfo;
   userAlias!: string;
+  textMedia: boolean = true;
 
   private activeUserSubscription!: Subscription;
 
@@ -34,6 +36,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
    setRecipient(id: string = 'all'): void {
       this.recipientId = id;
+     if (id !== 'all')
+       this.recipient = this.userList.find((user) => user.userId === id)!;
+   }
+
+   toggleMedia(): void {
+      this.textMedia = !this.textMedia;
    }
 
   connect(): void {

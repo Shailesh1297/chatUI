@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ChatBoardComponent } from './components/chat-board/chat-board.component';
+import { MultimediaChatBoardComponent } from './components/multimedia-chat-board/multimedia-chat-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatBoardComponent
+    ChatBoardComponent,
+    MultimediaChatBoardComponent
   ],
   imports: [
     BrowserModule,

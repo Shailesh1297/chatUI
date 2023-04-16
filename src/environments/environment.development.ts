@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8080',
+    apiUrl: 'https://192.168.0.102:8080',
     webSocketEndpoint: '/chat-ws'
 };

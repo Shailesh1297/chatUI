@@ -18,6 +18,7 @@ export class WebSocketService {
   private stompClient: any;
   private publicMessageEvent$: Subject<Message> = new Subject();
   private privateMessageEvent$: Subject<Message> = new Subject();
+  private webRTCSignalEvent$: Subject<any> = new Subject();
   private activeUsersEvent$: Subject<any> =new Subject();
   private sessionId: string|null = null;
   private userId: string|null = null;
@@ -53,6 +54,11 @@ export class WebSocketService {
         this.stompClient.subscribe("/user/topic/private", (sdkEvent: any) => {
           this.onPrivateMessageReceived(sdkEvent);
         });
+
+        //private webRTC signal
+        this.stompClient.subscribe("/user/topic/signal", (sdkEvent: any)=>{
+          this.onWebRTCSignalReceived(sdkEvent);
+        })
 
         //active users
         this.stompClient.subscribe("/topic/users",(sdkEvent: any)=> {
@@ -96,6 +102,10 @@ export class WebSocketService {
     this.stompClient.send('/app/private',{},JSON.stringify(message));
   }
 
+  public sendWebRTCSignal(signal: any): void {
+    this.stompClient.send('/app/signal',{},JSON.stringify(signal));
+  }
+
   public getActives(): void {
     this.stompClient.send('/app/actives',{},'');
   }
@@ -110,6 +120,10 @@ export class WebSocketService {
 
   public listenPrivate(): Subject<any> {
     return this.privateMessageEvent$;
+  }
+
+  public listenWebRTCSignal(): Subject<any> {
+    return this.webRTCSignalEvent$;
   }
 
   public activeUsers(): Subject<any> {
@@ -142,6 +156,11 @@ export class WebSocketService {
   private onPrivateMessageReceived(message: any): void {
     const msg: Message = <Message>JSON.parse(message.body);
     this.privateMessageEvent$.next(msg);
+  }
+
+  private onWebRTCSignalReceived(message: any): void {
+    const msg = JSON.parse(message.body);
+    this.webRTCSignalEvent$.next(msg);
   }
 
   private onUsersSessionUpdate(users: any): void {

@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-dev": "ng build --optimization=false --source-map=true",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -24,8 +25,9 @@
     "rxjs": "~7.8.0",
     "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
-    "uuid": "^9.0.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
+    "webrtc-adapter": "^8.2.2",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
